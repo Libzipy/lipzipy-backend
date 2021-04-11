@@ -4,6 +4,7 @@
   "description": "Proje",
   "main": "proje.js",
   "scripts": {
+    "start" : "nodemon proje.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bijan Etesam",
