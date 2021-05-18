@@ -1,8 +1,8 @@
 {
-  "name": "proje.js",
+  "name": "vtysbackend",
   "version": "1.0.0",
-  "description": "Proje",
-  "main": "proje.js",
+  "description": "ÖdevProjesi",
+  "main": "index.js",
   "scripts": {
     "start" : "nodemon proje.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,16 +10,9 @@
   "author": "Bijan Etesam",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cookie-parser": "^1.4.5",
-    "dotenv": "^8.2.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "fd": "0.0.3",
-    "formidable": "^1.2.2",
-    "fs": "0.0.1-security",
-    "hbs": "^4.1.1",
-    "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.18.1",
-    "nodemon": "^2.0.7"
+    "mysql": "^2.18.1"
   }
 }
