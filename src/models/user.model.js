@@ -5,6 +5,7 @@ var dbConn = require('../../config/db.config')
 
 //Employee object create
 var USER = function (user) {
+  console.log('model user', user, user.user_name)
   this.user_name = user.user_name
   this.user_surname = user.user_surname
   this.user_phonenumber = user.user_phonenumber

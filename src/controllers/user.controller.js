@@ -13,6 +13,7 @@ exports.findAll = function (req, res) {
 
 exports.create = function (req, res) {
   const newuser = new USER(req.body)
+  console.log('req.body =>', req.body)
 
   USER.create(newuser, function (err, user) {
     if (err) {
