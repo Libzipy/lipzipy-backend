@@ -17,8 +17,11 @@ exports.create = function (req, res) {
   USER.create(newuser, function (err, user) {
     if (err) {
       if (err.code === 'ER_DUP_ENTRY') {
-        res.json({ error: true, message: 'Email is already in use!', data: user })
+        res.json({ error: true, message: 'Email or Phone Number Already in use', data: user })
       }
+      else{
+        res.json({ error: true, message: 'Some Error', data: lib })
+    }
     }
     if (err != true) {
       res.json({ error: false, message: 'User added successfully!', data: user })
@@ -34,6 +37,14 @@ exports.findById = function (req, res) {
 }
 
 exports.update = function (req, res) {
+  if (err) {
+    if (err.code === 'ER_DUP_ENTRY') {
+      res.json({ error: true, message: 'Email or Phone Number Already in use', data: user })
+    }
+    else{
+      res.json({ error: true, message: 'Some Error', data: lib })
+  }
+  }
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     res.status(400).send({ error: true, message: 'Please provide all required field' })
   } else {

@@ -3,7 +3,7 @@
 const { threadId } = require('../../config/db.config')
 var dbConn = require('../../config/db.config')
 
-//Employee object create
+//User object create
 var USER = function (user) {
   this.user_name = user.user_name
   this.user_surname = user.user_surname
