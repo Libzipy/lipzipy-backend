@@ -16,10 +16,18 @@ exports.findAll = function(req, res) {
 exports.create = function(req, res) {
     const newuser = new USER(req.body);
 
-    USER.create(newuser, function(err, employee) {
-        if (err)
-        res.send(err);
-        res.json({error:false,message:"User added successfully!",data:employee});
+    USER.create(newuser, function(err, user) {
+        if(err){
+            if (err.code === 'ER_DUP_ENTRY'){
+                res.json({error:true,message:"Email is already in use!",data:user});
+            }
+        }
+        if (newuser.user_password != newuser.user_password_apply){
+            res.json({error:true,message:"Password is no matched!",data:user});
+        }
+        if(err != true){
+            res.json({error:false,message:"User added successfully!",data:user});
+        }
     });
 };
 
