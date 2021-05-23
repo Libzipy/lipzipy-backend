@@ -7,9 +7,9 @@ dotenv.config()
 
 //local mysql db connection
 const dbConn = mysql.createConnection({
-  host: process.env.HOST,
+  host: "localhost",
   user: 'root',
-  password: 'furkan78',
+  password: 'm000000QWE',
   database: 'mydb'
 })
 dbConn.connect(function (err) {

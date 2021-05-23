@@ -27,11 +27,15 @@ app.get('/', (req, res) => {
   res.send('Başlandı...')
 })
 
-// Require employee routes
+// Require user routes
 const UserRouter = require('./src/routes/user.routes')
+
+const LibraryRouter = require('./src/routes/library.routes')
 
 // using as middleware
 app.use('/api/user', UserRouter)
+
+app.use('/api/library', LibraryRouter)
 
 // listen for requests
 app.listen(port, () => {
