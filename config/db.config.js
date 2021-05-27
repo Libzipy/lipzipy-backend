@@ -7,10 +7,10 @@ dotenv.config()
 
 //local mysql db connection
 const dbConn = mysql.createConnection({
-  host: "localhost",
-  user: 'root',
-  password: 'm000000QWE',
-  database: 'mydb'
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DB
 })
 dbConn.connect(function (err) {
   if (err) throw err
