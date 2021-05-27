@@ -1,16 +1,13 @@
 'user strict'
 
 const mysql = require('mysql')
-const dotenv = require('dotenv')
-
-dotenv.config()
 
 //local mysql db connection
 const dbConn = mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DB
+  host: "localhost",
+  user: "root",
+  password: "m000000QWE",
+  database: "mydb"
 })
 dbConn.connect(function (err) {
   if (err) throw err
