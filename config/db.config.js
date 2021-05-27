@@ -10,7 +10,6 @@ const dbConn = mysql.createConnection({
   database: "heroku_cee269e8c907bb2"
 })
 dbConn.connect(function (err) {
-  if (err) throw err
   console.log('Database Connected!')
 })
 
