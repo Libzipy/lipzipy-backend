@@ -11,7 +11,9 @@ router.use(function (req, res, next) {
 })
 
 // Setup server port
-const port = 5000
+const PORT = process.env.PORT || '8080'
+
+app.set("port" ,PORT)
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
@@ -39,6 +41,6 @@ app.use('/api/library', LibraryRouter)
 app.use('/api/book', BookRouter)
 
 // listen for requests
-app.listen(process.env.PORT || port, () => {
-  console.log(`Server is listening on port ${port}`)
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`)
 })
