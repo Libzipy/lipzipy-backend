@@ -4,8 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "devstart": "nodemon server"
+  "dev": "react-scripts start",
+  "start": "serve -s build",
+  "build": "react-scripts build",
+  "test": "react-scripts test --env=jsdom",
+  "eject": "react-scripts eject",
+  "heroku-postbuild": "npm run build"
   },
   "keywords": [
     "nodejs",
@@ -22,7 +26,8 @@
     "body-parser": "^1.19.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "serve": "^11.3.2"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
