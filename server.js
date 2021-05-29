@@ -1,18 +1,13 @@
 const express = require('express')
-const router = express.Router()
+const cors = require('cors')
 
 // create express app
 const app = express()
 
-router.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next()
-})
-
 // Setup server port
 const PORT = process.env.PORT || 8080
 
+app.use(cors())
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
 
