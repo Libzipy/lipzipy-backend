@@ -4,9 +4,9 @@ const Book = require('../models/book.model')
 
 exports.findAll = function (req, res) {
     Book.findAll(function (err, book) {
-        console.log('controller')
-        if (err) res.send(err)
-        console.log('res', book)
+        if (err){
+            res.send(err)
+        } 
         res.send(book)
     })
 }
@@ -31,7 +31,9 @@ exports.create = function (req, res) {
 
 exports.findById = function (req, res) {
     Book.findById(req.params.id, function (err, book) {
-        if (err) res.send(err)
+        if (err){
+            res.send(err)
+        } 
         res.json(book)
     })
 }
@@ -49,7 +51,9 @@ exports.update = function (req, res) {
         res.status(400).send({ error: true, message: 'Please provide all required field' })
     } else {
         Book.update(req.params.id, new USER(req.body), function (err, book) {
-            if (err) res.send(err)
+            if (err){
+                res.send(err)
+            } 
             res.json({ error: false, message: 'Book successfully updated' })
         })
     }
@@ -57,7 +61,9 @@ exports.update = function (req, res) {
 
 exports.delete = function (req, res) {
     Book.delete(req.params.id, function (err, book) {
-        if (err) res.send(err)
+        if (err){
+            res.send(err)
+        } 
         res.json({ error: false, message: 'Book successfully deleted' })
     })
 }

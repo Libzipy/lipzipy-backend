@@ -2,15 +2,17 @@
 
 const Library = require('../models/library.model')
 
+// FindAll
 exports.findAll = function (req, res) {
     Library.findAll(function (err, lib) {
-        console.log('controller')
-        if (err) res.send(err)
-        console.log('res', lib)
+        if (err){
+            res.send(err)
+        } 
         res.send(lib)
     })
 }
 
+// Create
 exports.create = function (req, res) {
     const newlib = new Library(req.body)
 
@@ -24,18 +26,22 @@ exports.create = function (req, res) {
             }
         }
         if (err != true) {
-            res.json({ error: false, message: 'Library added successfully!', data: lib })
+            res.json({ error: false, message: 'Library is added successfully!', data: lib })
         }
     })
 }
 
+// FindById
 exports.findById = function (req, res) {
     Library.findById(req.params.id, function (err, lib) {
-        if (err) res.send(err)
+        if (err){
+            res.send(err)
+        }
         res.json(lib)
     })
 }
 
+// Update
 exports.update = function (req, res) {
     if (err) {
         if (err.code === 'ER_DUP_ENTRY') {
@@ -49,15 +55,20 @@ exports.update = function (req, res) {
         res.status(400).send({ error: true, message: 'Please provide all required field' })
     } else {
         Library.update(req.params.id, new USER(req.body), function (err, lib) {
-            if (err) res.send(err)
-            res.json({ error: false, message: 'Library successfully updated' })
+            if (err){
+                res.send(err)
+            }
+            res.json({ error: false, message: 'Library is successfully updated' })
         })
     }
 }
 
+// Delete
 exports.delete = function (req, res) {
     Library.delete(req.params.id, function (err, lib) {
-        if (err) res.send(err)
-        res.json({ error: false, message: 'Library successfully deleted' })
+        if (err){
+            res.send(err)
+        } 
+        res.json({ error: false, message: 'Library is successfully deleted' })
     })
 }

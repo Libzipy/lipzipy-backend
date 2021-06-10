@@ -5,10 +5,11 @@ var dbConn = require('../../config/db.config')
 
 //Library object create
 var Book = function (book) {
-  this.isbn = book.isbn
+  this.ISBN_id = book.ISBN_id
   this.book_name = book.book_name
-  this.book_np = book.book_np
-  this.book_yp = book.book_yp
+  this.book_number_of_pages = book.book_number_of_pages
+  this.book_book_date_of_issue = book.book_book_date_of_issue
+  this.book_book_place_of_publication = book.book_book_place_of_publication
 }
 
 Book.create = function (newbook, result) {
@@ -23,7 +24,7 @@ Book.create = function (newbook, result) {
   })
 }
 Book.findById = function (id, result) {
-  dbConn.query('Select * from book where isbn = ? ', id, function (err, res) {
+  dbConn.query('Select * from book where ISBN = ? ', id, function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(err, null)
