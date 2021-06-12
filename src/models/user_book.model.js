@@ -4,11 +4,11 @@ const { threadId } = require('../../config/db.config')
 var dbConn = require('../../config/db.config')
 
 //User_Book Object Model
-var User_Book = function (User_Book) {
-  this.user_id = User_Book.user_id
-  this.ISBN_id = User_Book.ISBN_id
-  this.time_of_taken = User_Book.time_of_taken
-  this.time_of_given = User_Book.time_of_given
+var User_Book = function (user_book) {
+  this.user_id = user_book.user_id
+  this.ISBN_id = user_book.ISBN_id
+  this.time_of_taken = user_book.time_of_taken
+  this.time_of_given = user_book.time_of_given
 }
 
 
@@ -24,3 +24,5 @@ User_Book.addbook = function (newUser_Book, result) {
     }
   })
 }
+
+module.exports = User_Book
