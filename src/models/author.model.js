@@ -73,15 +73,7 @@ Author.update = function (id, Author, result) {
 
 //Delete query
 Author.delete = function (id, result) {
-    dbConn.query('DELETE FROM author_book WHERE author_id = ?',[id], function (err, res) {
-        if (err) {
-          console.log('error: ', err)
-          result(null, err)
-        } else {
-          console.log('Users : ', res)
-          result(null, res)
-        }
-      })
+    dbConn.query('DELETE FROM author_book WHERE author_id = ?',[id])
     dbConn.query('DELETE FROM author WHERE author_id = ?', [id], function (err, res) {
         if (err) {
             console.log('error: ', err)

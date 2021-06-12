@@ -69,15 +69,7 @@ Library.update = function (id, library, result) {
 
 //Delete query
 Library.delete = function (id, result) {
-  dbConn.query('DELETE FROM book_library WHERE library_id = ?',[id], function (err, res) {
-    if (err) {
-      console.log('error: ', err)
-      result(null, err)
-    } else {
-      console.log('Users : ', res)
-      result(null, res)
-    }
-  })
+  dbConn.query('DELETE FROM book_library WHERE library_id = ?',[id])
   dbConn.query('DELETE FROM library WHERE library_id = ?', [id], function (err, res) {
     if (err) {
       console.log('error: ', err)
