@@ -3,7 +3,7 @@
 const Library_Book = require('../models/library_book.model')
 
 // ADD A Book TO A Library
-exports.addtype = function (req, res) {
+exports.addbook = function (req, res) {
 
   const newuserbook = new Library_Book(req.body)
 

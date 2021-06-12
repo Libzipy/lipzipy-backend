@@ -67,15 +67,7 @@ Type.update = function (id, type, result) {
 
 // Deleting the book in the database *Only for Admins
 Type.delete = function (id, result) {
-  dbConn.query('DELETE FROM book_type WHERE type_id = ?',[id], function (err, res) {
-    if (err) {
-      console.log('error: ', err)
-      result(null, err)
-    } else {
-      console.log('Users : ', res)
-      result(null, res)
-    }
-  })
+  dbConn.query('DELETE FROM book_type WHERE type_id = ?',[id])
   dbConn.query('DELETE FROM type_list WHERE type_id = ?', [id], function (err, res) {
     if (err) {
       console.log('error: ', err)
