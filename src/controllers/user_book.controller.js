@@ -1,13 +1,13 @@
 'use strict'
 
-const User_Book = require('../models/user.model')
+const User_Book = require('../models/user_book.model')
 
 // ADD A BOOK TO A User
 exports.addbook = function (req, res) {
     
     const newuserbook = new User_Book(req.body)
 
-    User_Book.addtouser(newuserbook, function (err, User_Book) {
+    User_Book.addbook(newuserbook, function (err, User_Book) {
         if (err) {
             res.send(err)
         }
