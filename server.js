@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
   res.send('Başlandı...')
 })
 
-// Require user routes
+// Require routes
 const UserRouter = require('./src/routes/user.routes')
 
 const LibraryRouter = require('./src/routes/library.routes')
@@ -58,6 +58,8 @@ app.use('/api/type', TypeRouter)
 // KİŞİNİN KİTAP ÖDÜNÇ SİSTEMİ
 app.use('/api/user_book', User_Book_Router)
 
+/*
+
 // KİTAPLARIN YAZARLARI SİSTEMİ
 app.use('/api/author_book', Author_Book_Router)
 
@@ -66,6 +68,8 @@ app.use('/api/library_book', Library_Book_Router)
 
 // KİTAPLARIN TÜRLERİ SİSTEMİ
 app.use('/api/type_book', Type_Book_Router)
+
+*/
 
 // listen for requests
 app.listen(PORT, () => {
