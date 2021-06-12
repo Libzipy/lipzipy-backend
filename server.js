@@ -26,12 +26,20 @@ const LibraryRouter = require('./src/routes/library.routes')
 
 const BookRouter = require('./src/routes/book.routes')
 
+const AuthorRouter = require('./src/routes/author.routes')
+
+const User_Book_Router = require('./src/routes/user_book.routes')
+
 // using as middleware
 app.use('/api/user', UserRouter)
 
 app.use('/api/library', LibraryRouter)
 
 app.use('/api/book', BookRouter)
+
+app.use('/api/author', AuthorRouter)
+
+app.use('/api/user_book', User_Book_Router)
 
 // listen for requests
 app.listen(PORT, () => {

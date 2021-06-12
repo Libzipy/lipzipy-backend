@@ -7,10 +7,11 @@ var dbConn = require('../../config/db.config')
 var Book = function (book) {
   this.book_name = book.book_name
   this.book_number_of_pages = book.book_number_of_pages
-  this.book_book_date_of_issue = book.book_book_date_of_issue
-  this.book_book_place_of_publication = book.book_book_place_of_publication
+  this.book_book_date_of_issue = book.book_date_of_issue
+  this.book_place_of_publication = book.book_place_of_publication
 }
 
+// Create a book to a database *Only For Admins
 Book.create = function (newbook, result) {
   dbConn.query('INSERT INTO book set ?', newbook, function (err, res) {
     if (err) {
@@ -22,6 +23,8 @@ Book.create = function (newbook, result) {
     }
   })
 }
+
+// Finding by id The books that the database contains
 Book.findById = function (id, result) {
   dbConn.query('Select * from book where ISBN_id = ? ', id, function (err, res) {
     if (err) {
@@ -32,6 +35,8 @@ Book.findById = function (id, result) {
     }
   })
 }
+
+// Finding by id The books that the database contains 
 Book.findAll = function (result) {
   dbConn.query('Select * from book ORDER BY ISBN_id ASC', function (err, res) {
     if (err) {
@@ -43,6 +48,8 @@ Book.findAll = function (result) {
     }
   })
 }
+
+// Updating the book in the database *Only for Admins
 Book.update = function (id, book, result) {
   dbConn.query(
     'UPDATE book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication WHERE ISBN_id = ?',
@@ -63,6 +70,8 @@ Book.update = function (id, book, result) {
     }
   )
 }
+
+// Deleting the book in the database *Only for Admins
 Book.delete = function (id, result) {
   dbConn.query('DELETE FROM book WHERE ISBN_id = ?', [id], function (err, res) {
     if (err) {
@@ -70,6 +79,24 @@ Book.delete = function (id, result) {
       result(null, err)
     } else {
       result(null, res)
+    }
+  })
+}
+
+Book.addtouser = function (user_id,ISBN_id,time_of_taken,time_of_given, result) {
+  dbConn.query('INSERT INTO user_on_loan SET user_id=?,ISBN_id=?,time_of_taken,time_of_given', [
+    user_id,
+    ISBN_id,
+    time_of_taken,
+    time_of_given
+  ],
+  function (err, res) {
+    if (err) {
+      console.log('error: ', err)
+      result(err, null)
+    } else {
+      console.log(res.insertId)
+      result(null, res.insertId)
     }
   })
 }
