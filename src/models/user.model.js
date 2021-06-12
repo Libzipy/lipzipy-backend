@@ -77,7 +77,7 @@ USER.update = function (id, user, result) {
   }
   else{ 
     dbConn.query( // For Commertial
-      'UPDATE user SET user_name=?,user_surname=?,user_phonenumber=?,user_email=?,user_password=?,user_isadmin WHERE user_id = ?',
+      'UPDATE user SET user_name=?,user_surname=?,user_phonenumber=?,user_email=?,user_password=?,user_isadmin=? WHERE user_id = ?',
       [
         user.user_name,
         user.user_surname,
