@@ -101,15 +101,7 @@ USER.update = function (id, user, result) {
 
 //Deletation Of A User With Id
 USER.delete = function (id, result) {
-  dbConn.query('DELETE FROM user_on_loan WHERE user_id = ?',[id], function (err, res) {
-    if (err) {
-      console.log('error: ', err)
-      result(null, err)
-    } else {
-      console.log('Users : ', res)
-      result(null, res)
-    }
-  })
+  dbConn.query('DELETE FROM user_on_loan WHERE user_id = ?',[id])
   dbConn.query('DELETE FROM user WHERE user_id = ?', [id], function (err, res) {
     if (err) {
       console.log('error: ', err)

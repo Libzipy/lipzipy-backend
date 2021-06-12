@@ -7,7 +7,7 @@ var dbConn = require('../../config/db.config')
 var Book = function (book) {
   this.book_name = book.book_name
   this.book_number_of_pages = book.book_number_of_pages
-  this.book_book_date_of_issue = book.book_date_of_issue
+  this.book_date_of_issue = book.book_date_of_issue
   this.book_place_of_publication = book.book_place_of_publication
 }
 
