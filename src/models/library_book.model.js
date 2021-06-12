@@ -3,18 +3,15 @@
 const { threadId } = require('../../config/db.config')
 var dbConn = require('../../config/db.config')
 
-//User_Book Object Model
-var User_Book = function (user_book) {
-  this.user_id = user_book.user_id
-  this.ISBN_id = user_book.ISBN_id
-  this.time_of_taken = user_book.time_of_taken
-  this.time_of_given = user_book.time_of_given
+//Library_Book Object Model
+var Library_Book = function (library_Book) {
+  this.library_id = library_Book.library_id
+  this.ISBN_id = library_Book.ISBN_id
 }
 
-
-//User_Book Creation *FOR ADD A BOOK TO A USER*
-User_Book.addbook = function (newUser_Book, result) {
-  dbConn.query('INSERT INTO user_on_loan set ?', newUser_Book, function (err, res) {
+//Library_Book Creation *FOR ADD A BOOK TO A USER*
+Library_Book.addbook = function (newLibrary_Book, result) {
+  dbConn.query('INSERT INTO book_library set ?', newLibrary_Book, function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(err, null)
@@ -25,4 +22,29 @@ User_Book.addbook = function (newUser_Book, result) {
   })
 }
 
-module.exports = User_Book
+//Library_Book DELETATİON *FOR DELETE A BOOK OF A Library*
+Library_Book.delete = function (id, result) {
+  dbConn.query('DELETE FROM book_library WHERE ISBN_id = ?', [id], function (err, res) {
+    if (err) {
+      console.log('error: ', err)
+      result(null, err)
+    } else {
+      result(null, res)
+    }
+  })
+}
+
+//Library_Book SELECT ALL BOOKS OF A USER
+Library_Book.findAll = function (id, result) {
+  dbConn.query("select book.ISBN_id, book.book_name from book inner join book_library on book_library.ISBN_id=book.ISBN_id where book_library.library_id= ?",[id], function (err, res) {
+    if (err) {
+      console.log('error: ', err)
+      result(null, err)
+    } else {
+      console.log('ALL : ', res)
+      result(null, res)
+    }
+  })
+}
+
+module.exports = Library_Book

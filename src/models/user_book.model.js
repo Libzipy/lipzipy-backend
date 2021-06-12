@@ -44,7 +44,7 @@ User_Book.findAll = function (id, result) {
       console.log('error: ', err)
       result(null, err)
     } else {
-      console.log('Users : ', res)
+      console.log('All : ', res)
       result(null, res)
     }
   })
