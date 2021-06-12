@@ -11,7 +11,7 @@ var Author_Book = function (Author_Book) {
 
 //Author_Book Creation *FOR ADD A BOOK TO A USER*
 Author_Book.addbook = function (newAuthor_Book, result) {
-  dbConn.query('INSERT INTO  set ?', newAuthor_Book, function (err, res) {
+  dbConn.query('INSERT INTO author_book set ?', newAuthor_Book, function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(err, null)
