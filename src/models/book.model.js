@@ -5,7 +5,6 @@ var dbConn = require('../../config/db.config')
 
 //Library object create
 var Book = function (book) {
-  this.ISBN_id = book.ISBN_id
   this.book_name = book.book_name
   this.book_number_of_pages = book.book_number_of_pages
   this.book_book_date_of_issue = book.book_book_date_of_issue
@@ -24,7 +23,7 @@ Book.create = function (newbook, result) {
   })
 }
 Book.findById = function (id, result) {
-  dbConn.query('Select * from book where ISBN = ? ', id, function (err, res) {
+  dbConn.query('Select * from book where ISBN_id = ? ', id, function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(err, null)
@@ -34,7 +33,7 @@ Book.findById = function (id, result) {
   })
 }
 Book.findAll = function (result) {
-  dbConn.query('Select * from book ORDER BY isbn ASC', function (err, res) {
+  dbConn.query('Select * from book ORDER BY ISBN_id ASC', function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(null, err)
@@ -46,11 +45,12 @@ Book.findAll = function (result) {
 }
 Book.update = function (id, book, result) {
   dbConn.query(
-    'UPDATE book SET book_name=?,book_np=?,book_yp=? WHERE isbn = ?',
+    'UPDATE book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication WHERE ISBN_id = ?',
     [
-      lib.book_name,
-      lib.book_np,
-      lib.book_yp,
+      book.book_name,
+      book.book_number_of_pages,
+      book.book_book_date_of_issue,
+      book.book_book_place_of_publication,
       id
     ],
     function (err, res) {
@@ -64,7 +64,7 @@ Book.update = function (id, book, result) {
   )
 }
 Book.delete = function (id, result) {
-  dbConn.query('DELETE FROM book WHERE isbn = ?', [id], function (err, res) {
+  dbConn.query('DELETE FROM book WHERE ISBN_id = ?', [id], function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(null, err)
