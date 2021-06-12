@@ -57,7 +57,9 @@ exports.update = function (req, res) {
           res.json({ error: true, message: 'Some Error', data: user })
       }
       }
-      res.json({ error: false, message: 'User is successfully updated' })
+      if(err != true){
+        res.json({ error: false, message: 'User is successfully updated' })
+      }
     })
   }
 }

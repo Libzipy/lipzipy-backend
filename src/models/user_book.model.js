@@ -37,19 +37,6 @@ User_Book.delete = function (id, result) {
   })
 }
 
-//USER_BOOK DELETATİON FOR ALL BOOKS OF A USER
-User_Book.deleteAll = function (id, result) {
-  dbConn.query('DELETE FROM user_on_loan WHERE user_id = ?',[id], function (err, res) {
-    if (err) {
-      console.log('error: ', err)
-      result(null, err)
-    } else {
-      console.log('Users : ', res)
-      result(null, res)
-    }
-  })
-}
-
 //USER_BOOK SELECT ALL BOOKS OF A USER
 User_Book.findAll = function (id, result) {
   dbConn.query("select book.ISBN_id, book.book_name from book inner join user_on_loan on user_on_loan.ISBN_id=book.ISBN_id where user_on_loan.user_id= ?",[id], function (err, res) {

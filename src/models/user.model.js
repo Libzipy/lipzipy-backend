@@ -55,7 +55,7 @@ USER.findAll = function (result) {
 USER.update = function (id, user, result) {
   if(user.user_isadmin == 1){ // For Admins
     dbConn.query(
-      'UPDATE user SET user_name=?,user_surname=?,user_phonenumber=?,user_email=?,user_password=?,user_isadmin WHERE user_id = ?',
+      'UPDATE user SET user_name=?,user_surname=?,user_phonenumber=?,user_email=?,user_password=?,user_isadmin=? WHERE user_id = ?',
       [
         user.user_name,
         user.user_surname,
@@ -101,6 +101,15 @@ USER.update = function (id, user, result) {
 
 //Deletation Of A User With Id
 USER.delete = function (id, result) {
+  dbConn.query('DELETE FROM user_on_loan WHERE user_id = ?',[id], function (err, res) {
+    if (err) {
+      console.log('error: ', err)
+      result(null, err)
+    } else {
+      console.log('Users : ', res)
+      result(null, res)
+    }
+  })
   dbConn.query('DELETE FROM user WHERE user_id = ?', [id], function (err, res) {
     if (err) {
       console.log('error: ', err)
