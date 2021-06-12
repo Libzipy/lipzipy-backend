@@ -8,7 +8,7 @@ router.post('/', type_bookController.addtype)
 // DELETE A TYPE FROM A BOOK
 router.delete('/:id', type_bookController.delete)
 
-// DELETE ALL TYPES FROM A BOOK
-router.delete('/:id', type_bookController.deleteAll)
+// SELECT ALL TYPE OF A BOOKS
+router.get('/:id', type_bookController.findAll)
 
 module.exports = router

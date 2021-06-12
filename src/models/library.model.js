@@ -52,8 +52,8 @@ Library.update = function (id, library, result) {
   dbConn.query(
     'UPDATE library SET library_name=?,library_adress=? WHERE library_id = ?',
     [
-      lib.library_name,
-      lib.library_adress,
+      library.library_name,
+      library.library_adress,
       id
     ],
     function (err, res) {
@@ -69,6 +69,15 @@ Library.update = function (id, library, result) {
 
 //Delete query
 Library.delete = function (id, result) {
+  dbConn.query('DELETE FROM book_library WHERE library_id = ?',[id], function (err, res) {
+    if (err) {
+      console.log('error: ', err)
+      result(null, err)
+    } else {
+      console.log('Users : ', res)
+      result(null, res)
+    }
+  })
   dbConn.query('DELETE FROM library WHERE library_id = ?', [id], function (err, res) {
     if (err) {
       console.log('error: ', err)

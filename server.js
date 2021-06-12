@@ -28,6 +28,8 @@ const BookRouter = require('./src/routes/book.routes')
 
 const AuthorRouter = require('./src/routes/author.routes')
 
+const TypeRouter = require('./src/routes/type.routes')
+
 const User_Book_Router = require('./src/routes/user_book.routes')
 
 const Author_Book_Router = require('./src/routes/author_book.routes')
@@ -49,6 +51,9 @@ app.use('/api/book', BookRouter)
 
 // GENEL YAZAR İŞLEMLERİ
 app.use('/api/author', AuthorRouter)
+
+// GENEL Type İŞLEMLERİ
+app.use('/api/type', TypeRouter)
 
 // KİŞİNİN KİTAP ÖDÜNÇ SİSTEMİ
 app.use('/api/user_book', User_Book_Router)
