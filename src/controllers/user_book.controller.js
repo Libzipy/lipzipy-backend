@@ -25,16 +25,6 @@ exports.delete = function (req, res) {
   })
 }
 
-// DELETE ALL BOOKS FROM A USER
-exports.deleteAll = function (req, res) {
-  User_Book.deleteAll(req.params.id, function (err, User_Book) {
-    if (err) {
-      res.send(err)
-    }
-    res.json({ error: false, message: 'Users all books successfully deleted' })
-  })
-}
-
 // FİND ALL BOOKS OF A USER
 exports.findAll = function (req, res) {
   User_Book.findAll(req.params.id, function (err, User_Book) {
