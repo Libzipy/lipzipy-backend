@@ -34,13 +34,9 @@ const User_Book_Router = require('./src/routes/user_book.routes')
 
 const Author_Book_Router = require('./src/routes/author_book.routes')
 
-/*
-
 const Library_Book_Router = require('./src/routes/library_book.routes')
 
 const Type_Book_Router = require('./src/routes/type_book.routes')
-
-*/
 
 // using as middleware
 
