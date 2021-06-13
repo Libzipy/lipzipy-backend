@@ -36,7 +36,7 @@ Type_Book.delete = function (id, result) {
 
 //USER_BOOK SELECT ALL BOOKS OF A USER
 Type_Book.findAll = function (id, result) {
-  dbConn.query("select book.ISBN_id, book.book_name from book inner join book_type on book_type.ISBN_id=book.ISBN_id where book_type.type_id= ?",[id], function (err, res) {
+  dbConn.query("select type_name from type_list inner join book_type on book_type.type_id=type_list.type_id where book_type.ISBN_id= ?",[id], function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(null, err)
