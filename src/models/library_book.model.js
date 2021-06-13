@@ -36,7 +36,7 @@ Library_Book.delete = function (id, result) {
 
 //Library_Book SELECT ALL BOOKS OF A USER
 Library_Book.findAll = function (id, result) {
-  dbConn.query("select book.ISBN_id, book.book_name from book inner join book_library on book_library.ISBN_id=book.ISBN_id where book_library.library_id= ?",[id], function (err, res) {
+  dbConn.query("select book.ISBN_id, book.book_name, book.book_number_of_pages, book.book_date_of_issue, book.book_place_of_publication from book inner join book_library on book_library.ISBN_id=book.ISBN_id where book_library.library_id= ?",[id], function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(null, err)
