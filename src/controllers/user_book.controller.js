@@ -17,11 +17,14 @@ exports.addbook = function (req, res) {
 
 // DELETE A BOOK FROM A USER
 exports.delete = function (req, res) {
-  User_Book.delete(req.params.id, function (err, User_Book) {
+
+  const newuserbook = new User_Book(req.body)
+
+  User_Book.delete(newuserbook, function (err, User_Book) {
     if (err) {
       res.send(err)
     }
-    res.json({ error: false, message: 'Users book is successfully deleted' })
+    res.json({ error: false, message: 'Users book deleted successfully!', data: User_Book })
   })
 }
 

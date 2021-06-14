@@ -26,8 +26,8 @@ User_Book.addbook = function (newUser_Book, result) {
 }
 
 //USER_BOOK DELETATİON *FOR DELETE A BOOK OF A USER*
-User_Book.delete = function (id, result) {
-  dbConn.query('DELETE FROM user_on_loan WHERE ISBN_id = ?', [id], function (err, res) {
+User_Book.delete = function (user_book, result) {
+  dbConn.query('DELETE FROM user_on_loan WHERE ISBN_id = ? AND user_id = ?', [user_book.ISBN_id,user_book.user_id], function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(null, err)
