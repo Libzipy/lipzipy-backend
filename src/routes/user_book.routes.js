@@ -6,7 +6,7 @@ const user_bookController = require('../controllers/user_book.controller')
 router.post('/', user_bookController.addbook)
 
 // DELETE A BOOK FROM A USER
-router.delete('/:id', user_bookController.delete)
+router.delete('/', user_bookController.delete)
 
 // SELECT ALL BOOKS OF A USER
 router.get('/:id', user_bookController.findAll)
