@@ -52,7 +52,7 @@ Book.findAll = function (result) {
 // Updating the book in the database *Only for Admins
 Book.update = function (id, book, result) {
   dbConn.query(
-    'UPDATE book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication WHERE ISBN_id = ?',
+    'UPDATE book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ? WHERE ISBN_id = ?',
     [
       book.book_name,
       book.book_number_of_pages,
