@@ -77,7 +77,7 @@ Book.update = function (id, book, result) {
       id
     ])
   dbConn.query(
-    'UPDATE book_type SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ? WHERE ISBN_id = ?',
+    'UPDATE book_type SET type_id=? WHERE ISBN_id = ?',
     [
       book.type_id,
       id
