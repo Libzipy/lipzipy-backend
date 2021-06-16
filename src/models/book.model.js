@@ -17,10 +17,10 @@ var Book = function (book) {
 Book.create = function (newbook, result) {
   dbConn.query('INSERT INTO book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ?',
   [
-    book.book_name,
-    book.book_number_of_pages,
-    book.book_book_date_of_issue,
-    book.book_book_place_of_publication
+    newbook.book_name,
+    newbook.book_number_of_pages,
+    newbook.book_book_date_of_issue,
+    newbook.book_book_place_of_publication
   ])
   dbConn.query('INSERT INTO author_book SET author_id = ?, ISBN_id = (SELECT max(ISBN_id) FROM book)', newbook.author_id)
   dbConn.query('INSERT INTO book_type set type_id=?, ISBN_id = (SELECT max(ISBN_id) FROM book)', newbook.type_id, function (err, res) {
