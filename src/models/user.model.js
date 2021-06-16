@@ -15,7 +15,14 @@ var USER = function (user) {
 
 //User Creation *For registration*
 USER.create = function (newuser, result) {
-  dbConn.query('INSERT INTO user set ?', newuser, function (err, res) {
+  dbConn.query('INSERT INTO user set user_name=?,user_surname=?,user_phonenumber=?,user_email=?,user_password=?,user_isadmin=?', [
+    newuser.user_name,
+    newuser.user_surname,
+    newuser.user_phonenumber,
+    newuser.user_email,
+    newuser.user_password,
+    0, //Admins Can Update Admins
+  ], function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(err, null)
