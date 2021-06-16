@@ -6,7 +6,7 @@ const library_bookController = require('../controllers/library_book.controller')
 router.post('/', library_bookController.addbook)
 
 // DELETE A BOOK FROM A LİBRARY
-router.delete('/:id', library_bookController.delete)
+router.delete('/', library_bookController.delete)
 
 // SELECT ALL BOOKS OF A LİBRARY
 router.get('/:id', library_bookController.findAll)
