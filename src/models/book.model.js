@@ -9,11 +9,21 @@ var Book = function (book) {
   this.book_number_of_pages = book.book_number_of_pages
   this.book_date_of_issue = book.book_date_of_issue
   this.book_place_of_publication = book.book_place_of_publication
+  this.type_id = book.type_id
+  this.author_id = book.author_id
 }
 
 // Create a book to a database *Only For Admins
 Book.create = function (newbook, result) {
-  dbConn.query('INSERT INTO book set ?', newbook, function (err, res) {
+  dbConn.query('INSERT INTO book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ?',
+  [
+    book.book_name,
+    book.book_number_of_pages,
+    book.book_book_date_of_issue,
+    book.book_book_place_of_publication
+  ])
+  dbConn.query('INSERT INTO author_book SET author_id = ?, ISBN_id = (SELECT max(ISBN_id) FROM book)', newbook.author_id)
+  dbConn.query('INSERT INTO book_type set type_id=?, ISBN_id = (SELECT max(ISBN_id) FROM book)', newbook.type_id, function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(err, null)
@@ -52,12 +62,24 @@ Book.findAll = function (result) {
 // Updating the book in the database *Only for Admins
 Book.update = function (id, book, result) {
   dbConn.query(
+    'UPDATE author_book SET author_id=? WHERE ISBN_id = ?',
+    [
+      book.author_id,
+      id
+    ])
+  dbConn.query(
     'UPDATE book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ? WHERE ISBN_id = ?',
     [
       book.book_name,
       book.book_number_of_pages,
       book.book_book_date_of_issue,
       book.book_book_place_of_publication,
+      id
+    ])
+  dbConn.query(
+    'UPDATE book_type SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ? WHERE ISBN_id = ?',
+    [
+      book.type_id,
       id
     ],
     function (err, res) {
