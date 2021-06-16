@@ -43,14 +43,6 @@ exports.findById = function (req, res) {
 
 // Update
 exports.update = function (req, res) {
-    if (err) {
-        if (err.code === 'ER_DUP_ENTRY') {
-            res.json({ error: true, message: 'Library Name already is in use', data: lib })
-        }
-        else{
-            res.json({ error: true, message: 'Some Error', data: lib })
-        }
-    }
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.status(400).send({ error: true, message: 'Please provide all required field' })
     } else {
