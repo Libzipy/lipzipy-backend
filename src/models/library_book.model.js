@@ -23,8 +23,8 @@ Library_Book.addbook = function (newLibrary_Book, result) {
 }
 
 //Library_Book DELETATİON *FOR DELETE A BOOK OF A Library*
-Library_Book.delete = function (id, result) {
-  dbConn.query('DELETE FROM book_library WHERE ISBN_id = ?', [id], function (err, res) {
+Library_Book.delete = function (newLibrary_Book, result) {
+  dbConn.query('DELETE FROM book_library WHERE ISBN_id=? AND library_id= ?', [newLibrary_Book.ISBN_id,newLibrary_Book.library_id], function (err, res) {
     if (err) {
       console.log('error: ', err)
       result(null, err)

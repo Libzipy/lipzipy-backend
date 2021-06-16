@@ -17,7 +17,10 @@ exports.addbook = function (req, res) {
 
 // DELETE A Book FROM A Library
 exports.delete = function (req, res) {
-    Library_Book.delete(req.params.id, function (err, Library_Book) {
+
+  const newuserbook = new Library_Book(req.body)
+
+    Library_Book.delete(newuserbook, function (err, Library_Book) {
     if (err) {
       res.send(err)
     }
