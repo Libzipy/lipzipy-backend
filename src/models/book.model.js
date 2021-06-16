@@ -22,7 +22,12 @@ Book.create = function (newbook, result) {
     newbook.book_date_of_issue,
     newbook.book_place_of_publication
   ])
-  dbConn.query('INSERT INTO author_book SET author_id = ?, ISBN_id = (SELECT max(ISBN_id) FROM book)', newbook.author_id)
+  dbConn.query('SELECT * FROM book')
+  dbConn.query('SELECT * FROM book')
+  dbConn.query('SELECT * FROM book')
+  dbConn.query('SELECT * FROM book')
+  
+  dbConn.query('INSERT INTO author_book SET author_id=?, ISBN_id = ((SELECT max(ISBN_id) FROM book))', newbook.author_id)
   dbConn.query('INSERT INTO book_type set type_id=?, ISBN_id = (SELECT max(ISBN_id) FROM book)', newbook.type_id, function (err, res) {
     if (err) {
       console.log('error: ', err)
