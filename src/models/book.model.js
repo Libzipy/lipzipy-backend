@@ -29,8 +29,7 @@ Book.create = function (newbook, result) {
       result(err, null)
     } else {
       console.log(res.insertId)
-      lastinsertedid = res.insertId
-      result(null, res.insertId)
+      result(null, lastinsertedid = res.insertId)
     }
   })
 
