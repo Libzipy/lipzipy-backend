@@ -13,7 +13,7 @@ var Book = function (book) {
   this.author_id = book.author_id
 }
 
-var lastinsertedid
+let lastinsertedid
 
 // Create a book to a database *Only For Admins
 Book.create = function (newbook, result) {
@@ -29,6 +29,7 @@ Book.create = function (newbook, result) {
       result(err, null)
     } else {
       console.log(res.insertId)
+      lastinsertedid = res.insertId
       result(null, lastinsertedid = res.insertId)
     }
   })
