@@ -13,27 +13,31 @@ var Book = function (book) {
   this.author_id = book.author_id
 }
 
+var a = 0
+
 // Create a book to a database *Only For Admins
 Book.create = function (newbook, result) {
-  dbConn.query('INSERT INTO book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ?',
-  [
-    newbook.book_name,
-    newbook.book_number_of_pages,
-    newbook.book_date_of_issue,
-    newbook.book_place_of_publication
-  ], function (err, res) {
-    if (err) {
-      console.log('error: ', err)
-      result(err, null)
-    } else {
-      console.log(res.insertId)
-      a = res[1]
-      result(null, res.insertId)
-    }
-  })
+    await dbConn.query('INSERT INTO book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ?',
+    [
+      newbook.book_name,
+      newbook.book_number_of_pages,
+      newbook.book_date_of_issue,
+      newbook.book_place_of_publication
+    ], function (err, res) {
+      if (err) {
+        console.log('error: ', err)
+        result(err, null)
+      } else {
+        console.log(res.insertId)
+        a = res[1]
+        result(null, res.insertId)
+      }
+    })
 
-  dbConn.query('INSERT INTO book_type set type_id=?, ISBN_id = (SELECT LAST_INSERT_ID())', newbook.type_id)
-  dbConn.query('INSERT INTO author_book SET author_id=?, ISBN_id = (SELECT LAST_INSERT_ID())', newbook.author_id)
+    console.log(a);
+
+  dbConn.query('INSERT INTO book_type set type_id=?, ISBN_id = (SELECT max(ISBN_id) FROM book)', newbook.type_id)
+  dbConn.query('INSERT INTO author_book SET author_id=?, ISBN_id = (SELECT max(ISBN_id) FROM book)', newbook.author_id)
 }
 
 // Finding by id The books that the database contains
