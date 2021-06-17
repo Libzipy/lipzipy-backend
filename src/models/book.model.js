@@ -17,7 +17,7 @@ var a = 0
 
 // Create a book to a database *Only For Admins
 Book.create = function (newbook, result) {
-    await dbConn.query('INSERT INTO book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ?',
+    dbConn.query('INSERT INTO book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ?',
     [
       newbook.book_name,
       newbook.book_number_of_pages,
