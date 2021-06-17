@@ -13,6 +13,8 @@ var Book = function (book) {
   this.author_id = book.author_id
 }
 
+var lastinsertedid
+
 // Create a book to a database *Only For Admins
 Book.create = function (newbook, result) {
   dbConn.query('INSERT INTO book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ?',
@@ -27,12 +29,15 @@ Book.create = function (newbook, result) {
       result(err, null)
     } else {
       console.log(res.insertId)
+      lastinsertedid = res.insertId
       result(null, res.insertId)
     }
   })
 
-  dbConn.query('INSERT INTO book_type set type_id=?, ISBN_id = ?', newbook.type_id, res.insertId)
-  dbConn.query('INSERT INTO author_book SET author_id=?, ISBN_id = ?', newbook.author_id, res.insertId)
+  console.log(lastinsertedid);
+
+  dbConn.query('INSERT INTO book_type set type_id=?, ISBN_id = ?', newbook.type_id, lastinsertedid)
+  dbConn.query('INSERT INTO author_book SET author_id=?, ISBN_id = ?', newbook.author_id, lastinsertedid)
 }
 
 // Finding by id The books that the database contains
