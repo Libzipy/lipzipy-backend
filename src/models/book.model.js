@@ -13,8 +13,6 @@ var Book = function (book) {
   this.author_id = book.author_id
 }
 
-const a = 0
-
 // Create a book to a database *Only For Admins
 Book.create = function (newbook, result) {
   dbConn.query('INSERT INTO book SET book_name=?,book_number_of_pages=?,book_date_of_issue=?,book_place_of_publication = ?',
@@ -33,8 +31,6 @@ Book.create = function (newbook, result) {
       result(null, res.insertId)
     }
   })
-
-  console.log(a);
 
   dbConn.query('INSERT INTO book_type set type_id=?, ISBN_id = LAST_INSERT_ID()', newbook.type_id)
   dbConn.query('INSERT INTO author_book SET author_id=?, ISBN_id = LAST_INSERT_ID()', newbook.author_id)
