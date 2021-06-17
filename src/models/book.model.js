@@ -13,7 +13,7 @@ var Book = function (book) {
   this.author_id = book.author_id
 }
 
-const a
+const a = 0
 
 // Create a book to a database *Only For Admins
 Book.create = function (newbook, result) {
