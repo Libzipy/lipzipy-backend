@@ -31,8 +31,8 @@ Book.create = function (newbook, result) {
     }
   })
 
-  dbConn.query('INSERT INTO book_type set type_id=?, ISBN_id = ?', newbook.type_id, insertId)
-  dbConn.query('INSERT INTO author_book SET author_id=?, ISBN_id = ?', newbook.author_id, insertId)
+  dbConn.query('INSERT INTO book_type set type_id=?, ISBN_id = ?', newbook.type_id, res.insertId)
+  dbConn.query('INSERT INTO author_book SET author_id=?, ISBN_id = ?', newbook.author_id, res.insertId)
 }
 
 // Finding by id The books that the database contains
